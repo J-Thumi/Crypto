@@ -1,0 +1,16 @@
+Rapid API
+Chart.js
+if you want to initialise an empty react app in the cuurrent directory use npx create-raect-app ./
+ to get more components of ant design get to antDesign .com components
+
+
+
+ instead of importing all components independently in app.js yo can create an index.js in the components folder then import them there 
+        import {default as Navbar} from './Navbar'
+ then in the app.js import all from there in one line
+        import {Navbar,Layout,Footer} from './components'
+
+
+
+
+        
