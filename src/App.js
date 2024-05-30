@@ -1,6 +1,10 @@
 import React from 'react'
 import {Routes,Route,Link} from 'react-router-dom'
 import {Layout,Typography,Space} from 'antd'
+
+
+
+
 import {Navbar,Exchanges,Homepage,Cryptocurrencies,CryptoDetails,News} from './components'
 import './App.css'
 function App() {
@@ -21,18 +25,19 @@ function App() {
               </Routes>
             </div>
             </Layout>
-    </div>
+   
     <div className="footer" >
-                <Typography.Title level={5} style={{color:'white' ,textAlign:'center'}}>
+   <Typography.Title level={5} style={{color:'white' ,textAlign:'center'}}>
 Cryptoverse <br/>
-All rights reserved
+All rights reserverd
                 </Typography.Title>
 
                 <Space>
-                  <link to ="/">Home</link>
-                  <link to="/exchange">Exchange</link>
-                  <link to="/news">News</link>
+                  <Link to ="/">Home</Link>
+                  <Link to="/exchange">Exchange</Link>
+                  <Link to="/news">News</Link>
                 </Space>
+                </div>
     </div>
   </div>
   )
