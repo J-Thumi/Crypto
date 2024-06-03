@@ -11,7 +11,7 @@ function Navbar() {
         <div className="logo-container">
             <Avatar src={icon} size="large"/>
             <Typography.Title level={2} className="logo">
-                <Link to="/" > QUALITY BEAN </Link>
+                <Link to="/" > Cryptoverse  </Link>
             </Typography.Title>
             
         </div>
