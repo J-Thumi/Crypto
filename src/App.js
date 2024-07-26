@@ -1,46 +1,48 @@
-import React from 'react'
-import {Routes,Route,Link} from 'react-router-dom'
-import {Layout,Typography,Space} from 'antd'
+import React from 'react';
+import { Switch, Routes,Route, Link } from 'react-router-dom';
+import { Layout, Typography, Space } from 'antd';
 
+import { Exchanges, Homepage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
+import './App.css';
 
-
-
-import {Navbar,Exchanges,Homepage,Cryptocurrencies,CryptoDetails,News} from './components'
-import './App.css'
-function App() {
-  return (
+const App = () => (
   <div className="app">
     <div className="navbar">
-        <Navbar /> 
+      <Navbar />
     </div>
     <div className="main">
-          <Layout>
-            <div className="routes">
-              <Routes> 
-                  <Route exact path="/" element={<Homepage />} />
-                  <Route exact path="/exchanges" element={<Exchanges />} />
-                  <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />} />
-                  <Route exact path="/crypto/:coinId" element={ <CryptoDetails />} />
-                  <Route exact path="/news" element={<News />} />
-              </Routes>
-            </div>
-            </Layout>
-   
-    <div className="footer" >
-   <Typography.Title level={5} style={{color:'white' ,textAlign:'center'}}>
-Cryptoverse <br/>
-All rights reserverd
-                </Typography.Title>
+      <Layout>
+        <div className="routes">
+       
+        <Routes> 
 
-                <Space>
-                  <Link to ="/">Home</Link>
-                  <Link to="/exchange">Exchange</Link>
-                  <Link to="/news">News</Link>
-                </Space>
-                </div>
+<Route exact path="/" element={<Homepage />} />
+
+<Route exact path="/exchanges" element={<Exchanges />} />
+
+ <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />} />
+
+ <Route exact path="/crypto/:coinId" element={ <CryptoDetails />} />
+
+ <Route exact path="/news" element={<News />} />
+ </Routes>
+        </div>
+      </Layout>
+      <div className="footer">
+        <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2021
+          <Link to="/">
+            Cryptoverse Inc.
+          </Link> <br />
+          All Rights Reserved.
+        </Typography.Title>
+        <Space>
+          <Link to="/">Home</Link>
+          <Link to="/exchanges">Exchanges</Link>
+          <Link to="/news">News</Link>
+        </Space>
+      </div>
     </div>
   </div>
-  )
-}
+);
 
-export default App
+export default App;

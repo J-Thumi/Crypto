@@ -1,30 +1,40 @@
-import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+// Note: Change v1 to v2 on rapid api
 
+const cryptoApiHeaders = {
+  'x-rapidapi-host': process.env.REACT_APP_CRYPTO_RAPIDAPI_HOST,
+  'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY,
+};
+const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 
-const cryptoApiHeaders={
-    'X-RapidAPI-Key': '8886828998msh5349933319e72c1p1a95b6jsn7dd4337d7a2a',
-    'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-    
-}
+export const cryptoApi = createApi({
+  reducerPath: 'cryptoApi',
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_CRYPTO_API_URL }),
+  endpoints: (builder) => ({
+    getCryptos: builder.query({
+      query: (count) => createRequest(`/coins?limit=${count}`),
+    }),
 
+    getCryptoDetails: builder.query({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
+    }),
 
-const baseUrl='https://coinranking1.p.rapidapi.com'
+    // Note: Change the coin price history endpoint from this - `coin/${coinId}/history/${timeperiod} to this - `coin/${coinId}/history?timeperiod=${timeperiod}`
+    getCryptoHistory: builder.query({
+      query: ({ coinId, timeperiod }) => createRequest(`coin/${coinId}/history?timeperiod=${timeperiod}`),
+    }),
 
-
-const createRequest=(url)=>({url, headers: cryptoApiHeaders})
-
-export const cryptoApi=createApi({
-    reducerPath:'cryptoApi',
-    baseQuery: fetchBaseQuery({baseUrl}),
-    endpoints: (builder)=>({
-        getCryptos: builder.query({
-            query:(count)=>createRequest(`/coins?limit=${count}`)
-        })
-    })
-})
-
+    // Note: To access this endpoint you need premium plan
+    getExchanges: builder.query({
+      query: () => createRequest('/exchanges'),
+    }),
+  }),
+});
 
 export const {
-    useGetCryptosQuery,
-} = cryptoApi
+  useGetCryptosQuery,
+  useGetCryptoDetailsQuery,
+  useGetExchangesQuery,
+  useGetCryptoHistoryQuery,
+} = cryptoApi;
